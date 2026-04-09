@@ -1,14 +1,30 @@
-# ExamOS-2027 — Eindexamen Training Template
+<div align="center">
 
-**Clean template** voor VWO/HAVO eindexamen training. Fork, deploy, vul de wizard in en je hebt een persoonlijk trainingssysteem in 5 minuten.
+# ExamOS 2027 — VWO/HAVO Template
 
+**Persoonlijk trainingssysteem voor eindexamen CSE 2027 — gebruik de wizard om jouw profiel te maken**
+
+[![Live](https://img.shields.io/badge/live-examos--2027.vercel.app-6c63ff?style=flat-square)](https://examos-2027.vercel.app)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
 [![Built with Claude](https://img.shields.io/badge/built%20with-Claude%20Code-9d97ff?style=flat-square)](https://claude.com/claude-code)
-[![Template](https://img.shields.io/badge/template-fork%20%26%20customize-6c63ff?style=flat-square)](#getting-started)
 
-> Gewogen studieplanner · 7-stap setup wizard · AI nakijken · Foutenanalyse · Sterrengamification
+**[📱 Live Demo](https://examos-2027.vercel.app)** · **[🧙 Wizard Walkthrough](#-setup-wizard)** · **[🎯 Features](#features)**
 
-Dit is de **template versie** van [ExamOS](https://github.com/ColdDesertLab/ExamOS). Het ships met demo data zodat je direct kunt rondklikken, en heeft een first-run wizard die de demo overschrijft met je eigen profiel.
+</div>
+
+---
+
+> **Template voor alle 2027 eindexamen studenten.** Ships met demo data en placeholder examen-datums. Bij eerste gebruik verschijnt een 7-stap wizard die de demo data overschrijft met je eigen vakken, SE-cijfers en persoonlijke examen-rooster (vul je officiële 2027 datums in wanneer die bekend zijn).
+
+---
+
+## 🎯 Welke versie heb ik nodig?
+
+| Versie | Doelgroep | Data | Login |
+|--------|-----------|------|-------|
+| [ExamOS Jussi Edition](https://github.com/ColdDesertLab/ExamOS) | Jussi persoonlijk (VWO 2026) | Zijn echte cijfers + rooster | `Jussi` / `Jones2026!` |
+| [ExamOS-2026](https://github.com/ColdDesertLab/ExamOS-2026) | Andere 2026 VWO/HAVO studenten | Demo data + echte mei 2026 datums | `demo` / `demo` |
+| **[ExamOS-2027](https://github.com/ColdDesertLab/ExamOS-2027)** ← je bent hier | 2027 VWO/HAVO studenten | Demo data + placeholder datums | `demo` / `demo` |
 
 ---
 
@@ -16,8 +32,30 @@ Dit is de **template versie** van [ExamOS](https://github.com/ColdDesertLab/Exam
 
 ### 1. Probeer de demo
 
-Open de [live demo](https://examos-2027.vercel.app) of clone lokaal:
+Open **[examos-2027.vercel.app](https://examos-2027.vercel.app)** in je browser.
 
+**Demo login:** `demo` / `demo`
+
+Bij eerste bezoek verschijnt de **setup wizard** automatisch. Je kunt deze overslaan om rond te klikken in demo data, of direct je eigen profiel invullen (5 minuten).
+
+### 2. Self-host — One-liner installer
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ColdDesertLab/ExamOS-2027/master/install.sh | bash
+examos-2027
+```
+
+Cloned repo naar `~/.examos-2027`, launcher in `~/.local/bin/examos-2027`, start lokale server en opent app. Auto-update per run.
+
+### 3. Fork & deploy naar eigen Vercel
+
+```bash
+gh repo fork ColdDesertLab/ExamOS-2027 --clone
+cd ExamOS-2027
+npx vercel deploy --prod
+```
+
+Of clone handmatig:
 ```bash
 git clone https://github.com/ColdDesertLab/ExamOS-2027.git
 cd ExamOS-2027
@@ -25,52 +63,48 @@ python3 -m http.server 8000
 # open http://localhost:8000/ExamOS.html
 ```
 
-**Demo login:** `demo` / `demo`
-
-Na inloggen verschijnt de **setup wizard** automatisch. Je kunt deze overslaan om de demo data te verkennen, of meteen je eigen profiel invullen.
-
-### 2. Self-host installer
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/ColdDesertLab/ExamOS-2027/master/install.sh | bash
-examos-2027
-```
-
-### 3. Add to Home Screen (PWA)
-
-Werkt op iPad, iPhone, macOS en Android — open de URL in je browser en kies "Zet op beginscherm" / "Installeren". Zie [PWA Setup](#-pwa-setup) hieronder.
-
 ---
 
 ## 🧙 Setup Wizard
 
-Bij eerste gebruik (of via **Instellingen → Wizard opnieuw doen**) verschijnt een 7-stap wizard:
+Bij eerste bezoek (of via **Instellingen → Wizard opnieuw doen**) verschijnt een 7-stap full-screen wizard:
 
-1. **Welkom** — uitleg van het systeem
-2. **Naam** — je voornaam (verschijnt in notificaties + dashboard)
-3. **Vakken** — selecteer uit 19 VWO/HAVO vakken (Wiskunde A/B/C/D, Natuurkunde, Scheikunde, Biologie, Economie, M&O, Geschiedenis, Aardrijkskunde, Maatschappijleer, Filosofie, Kunst, Nederlands, Engels, Duits, Frans, Spaans, Latijn, Grieks)
-4. **SE Cijfers** — vul je huidige schoolexamen gemiddelde per vak in
-5. **Examendatums** — datum, tijd en duur per vak (uit je officiële rooster)
-6. **Topics** — hoofdonderwerpen per vak (vooringevuld met defaults, inline bewerkbaar)
-7. **Klaar** — samenvatting → klik "Plan genereren"
+| Stap | Wat | Invoer |
+|------|-----|--------|
+| 1. **Welkom** | Uitleg van het systeem | — |
+| 2. **Persoonlijk** | Je naam (verschijnt in notificaties + dashboard) | Tekst |
+| 3. **Vakken** | Selecteer uit 19 VWO/HAVO presets of voeg eigen toe | Checkboxes |
+| 4. **SE Cijfers** | Je huidige schoolexamen gemiddelde per vak | Number (1.0-10.0) |
+| 5. **Examendatums** | Datum, tijd, duur per vak (check officieel 2027 rooster) | Date + time + duration |
+| 6. **Topics** | Hoofdonderwerpen per vak (vooringevuld met defaults) | Textarea |
+| 7. **Klaar** | Samenvatting → klik "Plan genereren" | — |
 
-Bij voltooien:
+**Bij voltooien:**
 - Demo data wordt gewist
-- Je nieuwe vakken + grades worden opgeslagen
-- Een gewogen studieplan wordt automatisch gegenereerd op basis van score deficit + tijdsdruk
-- `state.wizardCompleted = true` zodat de wizard niet opnieuw verschijnt
+- Jouw vakken + SE-cijfers worden opgeslagen
+- Een gewogen studieplan wordt automatisch gegenereerd
+- `state.wizardCompleted = true` — wizard komt niet terug
+
+**Vakken presets:** Wiskunde A/B/C/D, Natuurkunde, Scheikunde, Biologie, Economie, M&O, Geschiedenis, Aardrijkskunde, Maatschappijleer, Filosofie, Kunst, Nederlands, Engels, Duits, Frans, Spaans, Latijn, Grieks.
 
 ---
 
-## 📱 PWA Setup
+## 📅 CSE 1e tijdvak 2027
+
+De officiële 2027 examendatums zijn nog niet definitief. Demo gebruikt placeholder datums rond mei 2027 — pas deze aan tijdens de wizard zodra je rooster bekend is.
+
+---
+
+## 📱 PWA Home Screen Setup
 
 ### iPad / iPhone
-1. Open in Safari → tap deel-knop → **"Zet op beginscherm"**
-2. ExamOS verschijnt als native app, full-screen, eigen icoon
+1. Open **examos-2027.vercel.app** in Safari
+2. Deel-knop → **"Zet op beginscherm"** → **"Voeg toe"**
+3. App verschijnt full-screen op beginscherm
 
 ### macOS (Chrome / Edge / Arc)
 1. Klik ⋮-menu → **"ExamOS installeren..."**
-2. Verschijnt in Applications + Launchpad → sleep naar Dock
+2. Verschijnt in **Applications** + **Launchpad** → sleep naar Dock
 
 ### macOS (Safari)
 1. **Bestand** → **"Toevoegen aan Dock..."**
@@ -80,12 +114,40 @@ Bij voltooien:
 
 ---
 
+## ⚙️ Smart Features
+
+### Auto-recalculate bij stale planning
+Open je app na een paar dagen niet? Bij de volgende start detecteert ExamOS verlopen sessies en **herbereken automatisch** de planning vanaf vandaag. Werkt naadloos bij vakantie, ziekte of vergeten dagen.
+
+### Gewogen Budget Planner
+- **Score deficit**: `max(0, 6.5 - huidig_niveau)` — zwakke vakken krijgen automatisch meer sessies
+- **Tijdsdruk**: `√(36 / dagen_tot_examen)` — eerdere examens front-loaded
+- **Handmatige override**: 0.2x – 3.0x per vak via Instellingen
+
+### Sterren & Gamification
+- **Sterren**: sessie afronden (+1), score ≥7.0 (+1), ≥8.0 (+2), bonus activiteiten (+1)
+- **Streak**: consecutive dagen met sessies, milestones op 3d/7d/14d
+- **Week bonus**: alle sessies van de week af → +3 sterren
+- Zichtbaar in sidebar + dashboard
+
+### Bonus Activiteiten (na dag-klaar)
+4 kaarten voor extra sterren:
+- **Extra Sessie** voor zwakste vak
+- **Fouten Herhaling** interactief
+- **Theorie Uitleg** AI samenvatting
+- **Flashcard Quiz**
+
+### Examen-bewuste Scheduling
+Verschillende dagtypes met eigen slot-aantal en sessieduur: normale dag, zaterdag, zondag, examenweek, dag-vóór-examen, examendag, dag-na-examen. Dubbele examendagen = rust.
+
+---
+
 ## ☁️ Cloud Sync (optioneel)
 
 Deze template heeft cloud sync **uitgeschakeld** by default (alleen localStorage). Om cross-device sync te activeren:
 
-1. Maak een gratis Supabase project aan op [supabase.com](https://supabase.com)
-2. Maak een tabel `examos_state`:
+1. Maak een gratis [Supabase](https://supabase.com) project
+2. SQL editor → run:
    ```sql
    create table examos_state (
      id text primary key,
@@ -97,7 +159,7 @@ Deze template heeft cloud sync **uitgeschakeld** by default (alleen localStorage
    alter table examos_state enable row level security;
    create policy "open" on examos_state for all using (true);
    ```
-3. Vul in `ExamOS.html` (regel 2180):
+3. In `ExamOS.html` (regel ~2180):
    ```javascript
    const SUPABASE_URL = 'https://your-project.supabase.co';
    const SUPABASE_KEY = 'your-anon-key';
@@ -106,54 +168,46 @@ Deze template heeft cloud sync **uitgeschakeld** by default (alleen localStorage
 
 ---
 
-## 🎯 Features
+## Features
 
-- **Setup wizard** (7 stappen) voor eerste gebruik
-- **Gewogen budget planner** — zwakke vakken krijgen automatisch meer sessies
-- **Examen-bewuste scheduling** — Pomodoro timer, verschillende dagtypes (zaterdag, zondag, examenweek, dag-na, etc.)
-- **AI nakijken** (optioneel, met Claude/GPT) — upload examens → krijg automatische scoring + foutendetectie
-- **Sterren & streaks** — gamification voor consistentie
-- **Bonus activiteiten** na dag-klaar — extra sessie, fouten herhaling, theorie uitleg, flashcard quiz
-- **Studie verdeling tabel** in Instellingen — interactieve aanpassing van gewicht per vak
-- **Foutenlog** met F1-F8 codes en automatische actiepunten
-- **Notities + Flashcards + Quiz generator**
+- **Setup wizard** — 7-stap first-run configuratie
+- **Auto-recalculate** bij stale planning
+- **Gewogen budget planner** met handmatige weight overrides
+- **Pomodoro timer** (25/45/55/90 min) met fullscreen break overlay
+- **AI Grader** — upload examens → scoring met N-term → auto foutenlog (Claude/GPT)
+- **Quiz Generator** — AI meerkeuzevragen per vak
+- **AI Studieassistent** — chat met 4 modes
+- **Flashcards** — automatisch uit foutenlog
+- **Formulebladen** voor Wiskunde B, Natuurkunde, Scheikunde, Biologie
+- **Oude examens** — directe links naar examenblad.nl per vak per jaar
+- **Foutenlog** met F1-F8 codes
+- **Sterren & streaks** gamification
+- **Dag-klaar celebration** met confetti + bonus kaarten
+- **Dashboard** met subject cards + studielast analyse
+- **Studie verdeling tabel** in Instellingen
 - **PWA** — installeerbaar op iPad, iPhone, macOS, Android
+- **Dark / Light / Auto theme**
 - **Cross-device sync** via Supabase (optioneel)
 
-## 📂 Bestanden
-
-| Bestand | Functie |
-|---------|---------|
-| `ExamOS.html` | Hoofdbestand (~6500 regels, single-file app) |
-| `index.html` | Kopie voor static hosting |
-| `manifest.json` | PWA manifest |
-| `install.sh` | Self-host installer |
-| `README.md` | Dit bestand |
-
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Laag | Technologie |
 |------|-------------|
-| Frontend | Single HTML, vanilla JS, geen frameworks, geen build step |
-| Styling | CSS custom properties, dark/light/auto theme, responsive |
+| Frontend | Single HTML (~6700 regels), vanilla JS, geen frameworks |
+| Styling | CSS custom properties, responsive |
 | Data | localStorage + optionele Supabase sync |
-| AI | Anthropic Claude API + OpenAI API (optioneel) |
+| AI | Anthropic Claude + OpenAI (optioneel) |
 | Hosting | Vercel / Netlify / GitHub Pages / self-host |
-| PWA | Manifest + canvas-generated icons |
-
-## 🆚 ExamOS 2026 vs 2027
-
-| | **2026** | **2027** |
-|---|---|---|
-| Doelgroep | Specifiek voor Jussi (VWO 2026) | Iedereen — fork & customize |
-| Vakken | Hardcoded (8 vakken) | Wizard-configured (19 presets) |
-| Login | `Jussi / Jones2026!` | `demo / demo` |
-| Examendatums | Hardcoded mei 2026 | Wizard-configured |
-| Cloud sync | Geactiveerd (Supabase) | Uit (zelf in te stellen) |
-| Wizard | Optioneel via Instellingen | Verplicht bij eerste gebruik |
-
-[ExamOS 2026 →](https://github.com/ColdDesertLab/ExamOS)
+| PWA | manifest.json + canvas-generated icons |
 
 ## License
 
 MIT — fork, customize, deploy. Geen attributie vereist.
+
+---
+
+<div align="center">
+
+Part of the [ExamOS](https://github.com/ColdDesertLab/ExamOS) family · Built with [Claude Code](https://claude.com/claude-code)
+
+</div>
