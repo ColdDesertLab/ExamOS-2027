@@ -10,6 +10,8 @@
 
 **[📱 Live Demo](https://examos-2027.vercel.app)** · **[🧙 Wizard Walkthrough](#-setup-wizard)** · **[🎯 Features](#features)**
 
+![Setup Wizard](docs/screenshots/01-wizard-welcome.png)
+
 </div>
 
 ---
@@ -89,6 +91,18 @@ Bij eerste bezoek (of via **Instellingen → Wizard opnieuw doen**) verschijnt e
 
 ---
 
+## 📸 Screenshots
+
+| Wizard: SE cijfers invullen | Vandaag (na wizard) |
+|---|---|
+| ![Wizard grades](docs/screenshots/02-wizard-grades.png) | ![Vandaag](docs/screenshots/03-vandaag-demo.png) |
+
+| Planning Engine | Studie Verdeling tabel |
+|---|---|
+| ![Planning](docs/screenshots/04-planning-demo.png) | ![Budget](docs/screenshots/05-budget-demo.png) |
+
+---
+
 ## 📅 CSE 1e tijdvak 2027
 
 De officiële 2027 examendatums zijn nog niet definitief. Demo gebruikt placeholder datums rond mei 2027 — pas deze aan tijdens de wizard zodra je rooster bekend is.
@@ -139,6 +153,26 @@ Open je app na een paar dagen niet? Bij de volgende start detecteert ExamOS verl
 
 ### Examen-bewuste Scheduling
 Verschillende dagtypes met eigen slot-aantal en sessieduur: normale dag, zaterdag, zondag, examenweek, dag-vóór-examen, examendag, dag-na-examen. Dubbele examendagen = rust.
+
+---
+
+## 🤖 AI Features — Hoe werkt de API?
+
+De app zelf (planner, timer, foutenlog, sterren, wizard) **werkt zonder API key**. Alleen de AI-features vereisen een key:
+
+| Feature | API nodig |
+|---------|-----------|
+| Planner, timer, sterren, foutenlog | ❌ Nee |
+| AI Grader (examens nakijken) | ✅ Anthropic |
+| Quiz Generator | ✅ Anthropic of OpenAI |
+| AI Studieassistent (chat) | ✅ Anthropic of OpenAI |
+
+**Belangrijk:** Dit is de **Anthropic API / OpenAI API** (pay-per-token), **niet je Claude.ai of ChatGPT abonnement**. Die abonnementen geven geen API-toegang.
+
+- **Anthropic API key**: [console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys) — credit kopen vanaf $5
+- **OpenAI API key**: [platform.openai.com/api-keys](https://platform.openai.com/api-keys) — prepaid credit
+
+Keys worden **lokaal opgeslagen** in je browser en direct naar de API gestuurd. Typisch gebruik: één examen nakijken ≈ $0.05-0.15 Claude / $0.02-0.08 GPT-4o.
 
 ---
 
