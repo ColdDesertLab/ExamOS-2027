@@ -16,7 +16,7 @@ Dit is de **template versie** van [ExamOS](https://github.com/ColdDesertLab/Exam
 
 ### 1. Probeer de demo
 
-Open de live demo (zodra deployed) of clone lokaal:
+Open de [live demo](https://examos-2027.vercel.app) of clone lokaal:
 
 ```bash
 git clone https://github.com/ColdDesertLab/ExamOS-2027.git
